@@ -40,28 +40,58 @@ Backend: Node.js with Express.js for APIs.
 Machine Learning: TensorFlow.js for leaf disease prediction.
 Let’s start building:
 
-Step 1: Setup the Project Structure
-Frontend Folder Structure:
-java
-Copy code
-leaf-disease-prediction/
-  ├── public/
-  ├── src/
-  │    ├── components/
-  │    ├── assets/
-  │    ├── App.js
-  │    └── index.js
-  ├── package.json
-  └── .env
-Backend Folder Structure:
-''' bash '''
-backend/
-  ├── controllers/
-  ├── models/
-  ├── routes/
-  ├── app.js
-  ├── package.json
-  └── .env
+
+#### Step 1: Setup the Project Structure
+1. **Frontend Folder Structure:**
+   ```
+   leaf-disease-prediction/
+     ├── public/
+     ├── src/
+     │    ├── components/
+     │    ├── assets/
+     │    ├── App.js
+     │    └── index.js
+     ├── package.json
+     └── .env
+   ```
+2. **Backend Folder Structure:**
+   ```
+   backend/
+     ├── controllers/
+     ├── models/
+     ├── routes/
+     ├── app.js
+     ├── package.json
+     └── .env
+   ```
+
+#### Step 2: Backend Development
+- **Setting up Node.js with Express:**
+
+   1. Create a new directory called `backend`, and initiate it with:
+      ```bash
+      mkdir backend
+      cd backend
+      npm init -y
+      npm install express mongoose dotenv cors
+      ```
+
+   2. **Models and Routes:**
+      - Create a `disease.model.js` under `models/` for MongoDB schema.
+      - Create a `diseaseRoutes.js` under `routes/` to define API endpoints.
+
+#### Step 3: Frontend Development
+1. **Set up React:**
+   - Navigate to your project root and create a React app:
+     ```bash
+     npx create-react-app leaf-disease-prediction
+     cd leaf-disease-prediction
+     npm install tailwindcss @tensorflow/tfjs axios
+     ```
+
+   - **Tailwind CSS Setup:**
+     Follow [Tailwind CSS official setup guide](https://tailwindcss.com/docs/guides/create-react-app) for React apps.
+
   
 ## 🖼️ Screenshots
 ![Leaf Detection Animation](link_to_screenshot_or_animation_gif)
