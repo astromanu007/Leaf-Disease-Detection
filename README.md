@@ -110,6 +110,6 @@ This project is licensed under the MIT License.
 ## 📧 Contact
 
 - **GitHub**: [Your GitHub Profile](https://github.com/astromanu007)
-- **LinkedIn**: [Your LinkedIn Profile]([https://www.linkedin.com/in/your_linkedin_profile](https://www.linkedin.com/in/manish-dhatrak-b759171aa/))
+- **LinkedIn**: [Your LinkedIn Profile]((https://www.linkedin.com/in/manish-dhatrak-b759171aa/))
 - **Email**: astromanu007@example.com
 
