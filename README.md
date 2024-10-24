@@ -32,6 +32,37 @@ This project is developed using React for the frontend, TensorFlow.js for machin
 - [License](#-license)
 - [Contact](#-contact)
 
+
+
+Technologies:
+Frontend: React.js with Tailwind CSS for UI.
+Backend: Node.js with Express.js for APIs.
+Machine Learning: TensorFlow.js for leaf disease prediction.
+Let’s start building:
+
+Step 1: Setup the Project Structure
+Frontend Folder Structure:
+java
+Copy code
+leaf-disease-prediction/
+  ├── public/
+  ├── src/
+  │    ├── components/
+  │    ├── assets/
+  │    ├── App.js
+  │    └── index.js
+  ├── package.json
+  └── .env
+Backend Folder Structure:
+''' bash '''
+backend/
+  ├── controllers/
+  ├── models/
+  ├── routes/
+  ├── app.js
+  ├── package.json
+  └── .env
+  
 ## 🖼️ Screenshots
 ![Leaf Detection Animation](link_to_screenshot_or_animation_gif)
 
