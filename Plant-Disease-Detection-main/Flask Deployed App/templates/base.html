@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bttn.css/0.2.4/bttn.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <title>{% block pagetitle %}{% endblock pagetitle %}</title>
+    <style>
+        :root {
+            --primary-green: #2F5233;
+            --light-green: #4ECC5A;
+            --dark-green: #042908;
+            --earth-brown: #8B4513;
+        }
+
+        body {
+            background-color: #FFE4C4; /* Changed to bisque color for slight orange tint */
+            font-family: 'Playfair Display', serif;
+            background-image: url('https://www.transparenttextures.com/patterns/farm-field.png');
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Falling Leaves Animation */
+        @keyframes falling {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .leaf {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232F5233" d="M17,8C8,10,5.9,16.17,3.82,21.34L5.71,22l1-2.3A4.49,4.49,0,0,0,8,20C19,20,22,3,22,3,21,5,14,5.25,9,6.25S2,11.5,2,13.5a6.23,6.23,0,0,0,1.5,3.75L4,16C4,16,7,8,17,8Z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: falling 5s linear infinite;
+            z-index: 1000;
+        }
+
+        .navbar {
+            background-color: var(--primary-green) !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem;
+        }
+
+        .navbar-toggler {
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .navbar-toggler {
+                display: block;
+            }
+            .navbar-collapse {
+                display: none;
+            }
+            .navbar-collapse.show {
+                display: block;
+            }
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--light-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .rounded-lg {
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: rgba(255,255,255,0.9);
+        }
+
+        label {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        label:hover {
+            background-color: var(--dark-green);
+        }
+
+        .footer-basic {
+            padding: 40px 0;
+            background-color: var(--primary-green);
+            color: #f1f3f5;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        .footer-basic ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .footer-basic li {
+            padding: 0 10px;
+        }
+
+        .footer-basic ul a {
+            color: #F5F5DC;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-basic ul a:hover {
+            opacity: 1;
+            color: var(--light-green);
+        }
+
+        .footer-basic .social > a {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            border-radius: 50%;
+            border: 2px solid #F5F5DC;
+            margin: 0 8px;
+            color: #F5F5DC;
+            transition: all 0.3s ease;
+        }
+
+        .footer-basic .social > a:hover {
+            background-color: #F5F5DC;
+            color: var(--primary-green);
+        }
+
+        .footer-basic .copyright {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #F5F5DC;
+            margin-bottom: 0;
+        }
+
+        .btn-outline-success {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .btn-outline-success:hover {
+            background-color: var(--primary-green);
+            color: white;
+        }
+
+        /* Animation classes */
+        .hover-grow { transition: transform 0.3s ease; }
+        .hover-grow:hover { transform: scale(1.1); }
+
+        .hover-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .hover-shine:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(35deg);
+            transition: transform 0.6s;
+        }
+        .hover-shine:hover:after { transform: rotate(35deg) translateX(450%); }
+
+        .hover-pulse:hover {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .hover-bounce:hover {
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="navbar-brand active">
+                    <a class="nav-link animate__animated animate__fadeIn" href="/"><i class="ion-leaf"></i> Roots & Refuge</a>
+                </li>
+                <li class="navbar-brand active">
+                    <a class="nav-link animate__animated animate__fadeIn animate__delay-1s" href="/index"><i class="ion-android-bulb"></i> Plant Whisperer</a>
+                </li>
+                <li class="navbar-brand">
+                    <a class="nav-link animate__animated animate__fadeIn animate__delay-2s" href="/market"><i class="ion-bag"></i> Garden's Treasure</a>
+                </li>
+                <li class="navbar-brand">
+                    <a class="nav-link animate__animated animate__fadeIn animate__delay-3s" href="/contact"><i class="ion-android-call"></i> Grow Together</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block body %}
+    {% endblock body %}
+    <div class="footer-basic">
+        <footer>
+
+            <br>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="/" class="footer-link hover-grow">🏡 Cultivate Home</a></li>
+                <li class="list-inline-item"><a target="_blank" href="https://www.krsikx.com/" class="footer-link hover-shine">🌿 Growing Solutions</a></li>
+                <li class="list-inline-item"><a target="_blank" href="https://www.krsikx.com/copy-of-solutions" class="footer-link hover-pulse">💫 Our Story</a></li>
+                <li class="list-inline-item"><a href="/index" class="footer-link hover-bounce">🔍 Plant Doctor</a></li>
+            </ul>
+            <p class="copyright animate__animated animate__fadeIn animate__delay-1s">✨ Crafted with passion by Manish Dhatrak | Where Innovation Meets Agriculture 🌱</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create falling leaves
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.style.left = Math.random() * window.innerWidth + 'px';
+            leaf.style.animationDuration = Math.random() * 3 + 4 + 's'; // Random duration between 4-7s
+            leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.body.appendChild(leaf);
+            
+            // Remove leaf after animation completes
+            setTimeout(() => leaf.remove(), 7000);
+        }
+
+        // Create leaves periodically
+        setInterval(createLeaf, 300);
+
+        // Initialize Bootstrap components
+        $(document).ready(function() {
+            $('.navbar-toggler').on('click', function() {
+                $('#navbarNavDropdown').toggleClass('show');
+            });
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

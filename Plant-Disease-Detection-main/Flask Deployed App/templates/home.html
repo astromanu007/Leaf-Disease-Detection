@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Anjaneya Plant Disease Detection & Cure
+{% endblock pagetitle %}
+{% block body %}
+<style>
+  body{
+    overflow-x: hidden;
+    background-color: #f7f3eb; /* Light earthy background */
+  }
+  @media only screen and (max-width: 830px) {
+    .laptop{
+      display: none;
+    }
+  }
+  @media (min-width:830px) and (max-width: 1536px){
+    .mobile{
+      display: none;
+    }
+  }
+</style>
+
+
+<div class="row mb-5 text-center text-white laptop">
+    <div class="col-lg-10 mx-auto">
+        <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color: #8B4513;">
+            <div class="falling-leaves">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+            <b>🌾Anjaneya Leaf Disease Detection & Cure🌾</b>
+            <style>
+                .falling-leaves {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                }
+                .leaf {
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%238B4513" d="M12,3c0,0-6.186,5.34-6.186,11.51c0,3.699,2.486,6.59,6.186,6.59s6.186-2.891,6.186-6.59C18.186,8.34,12,3,12,3z"/></svg>') no-repeat;
+                    animation: falling 5s infinite linear;
+                    opacity: 0.7;
+                }
+                .leaf:nth-child(1) { left: 10%; animation-delay: -2s; }
+                .leaf:nth-child(2) { left: 25%; animation-delay: -4s; }
+                .leaf:nth-child(3) { left: 40%; animation-delay: -6s; }
+                .leaf:nth-child(4) { left: 55%; animation-delay: -1s; }
+                .leaf:nth-child(5) { left: 70%; animation-delay: -3s; }
+                .leaf:nth-child(6) { left: 85%; animation-delay: -5s; }
+                .leaf:nth-child(7) { left: 30%; animation-delay: -2.5s; }
+                .leaf:nth-child(8) { left: 60%; animation-delay: -4.5s; }
+                
+                @keyframes falling {
+                    0% {
+                        transform: translate(0, -100%) rotate(0deg);
+                        opacity: 0.7;
+                    }
+                    100% {
+                        transform: translate(20px, 100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            </style>
+        </h1>
+        <p class="lead" style="font-weight: 500;color: #5C4033;">Let Anjaneya help you detect diseases in these fruits and vegetables</p>
+    </div>
+</div>
+<center class="laptop">
+    <a href="/index">
+    <button class="bttn-pill bttn-lg" onclick="playSparkles()" style="background-color: #DEB887; border: 2px solid #8B4513; position: relative; overflow: hidden;">
+        <b style="color: #5C4033;">🔍 Analyze Your Plant's Health 🌿</b>
+        <div class="sparkles"></div>
+    </button>
+    <style>
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .sparkle {
+            position: absolute;
+            background: white;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: sparkle-animation 0.8s linear forwards;
+        }
+        @keyframes sparkle-animation {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+    <script>
+        function playSparkles() {
+            const btn = event.currentTarget;
+            const sparklesContainer = btn.querySelector('.sparkles');
+            
+            // Create multiple sparkles
+            for(let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Random position around the button
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 50;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                sparkle.style.setProperty('--tx', `${tx}px`);
+                sparkle.style.setProperty('--ty', `${ty}px`);
+                
+                // Random starting position
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                
+                sparklesContainer.appendChild(sparkle);
+                
+                // Remove sparkle after animation
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        }
+    </script>
+</a>
+</center>
+<div class="row p-5 laptop">
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/slideshows/health_benefits_of_cherries_slideshow/1800x1200_health_benefits_of_cherries_slideshow.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Cherry</p></center>
+        </div>
+    </div>
+    <div class="col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://post.healthline.com/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Apple</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="	https://img.freepik.com/premium-photo/corn-high-quality-4k-ultra-hd-hdr_670382-129533.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Corn</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://www.supermarketperimeter.com/ext/resources/0430-blueberries.png?t=1588260305&width=1080" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Blueberry</p></center>
+        </div>
+    </div>
+</div>
+
+<div class="row p-5 laptop">
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://cdn.pixabay.com/photo/2014/08/18/23/11/bell-peppers-421087_640.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Pepper Bell</p></center>
+        </div>
+    </div>
+    <div class="col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/the_health_benefits_of_peaches_slideshow/thinkstock_rf_peaches.jpg?resize=650px:*" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Peach</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://www.irishtimes.com/polopoly_fs/1.3923226.1560339148!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Orange</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://i.ndtvimg.com/i/2015-09/grapes_625x350_61443376353.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Grape</p></center>
+        </div>
+    </div>
+</div>
+
+<div class="row p-5 laptop">
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://post.healthline.com/wp-content/uploads/2020/08/squash-fruit-or-vegetable-732x549-thumbnail-732x549.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Squash</p></center>
+        </div>
+    </div>
+    <div class="col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://m.economictimes.com/thumb/msid-66988154,width-1200,height-900,resizemode-4,imgsize-211276/soyabean-agencies.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Soybean</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/326/326272/raspberries-with-ketones-in-a-bowl.jpg?w=1155&h=1541" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Raspberry</p></center>
+        </div>
+    </div>
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 90%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-111140,msid-72862126/potato-getty.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Potato</p></center>
+        </div>
+    </div>
+</div>
+
+<center class="laptop">
+<div class="row p-5">
+    <div class=" col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 45%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://images.indianexpress.com/2020/02/strawberry-1200.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Strawberry</p></center>
+        </div>
+    </div>
+    <div class="col">
+        <div class="p-3 bg-white shadow rounded-lg" style="width: 45%;height: 92%;border: 2px solid #DEB887;">
+          <img src="https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg" width="250" height="250">
+          <center><p class="lead" style="font-weight: 500;color: #8B4513;">Tomato</p></center>
+        </div>
+    </div>
+</div>
+</center>
+
+{% endblock body %}

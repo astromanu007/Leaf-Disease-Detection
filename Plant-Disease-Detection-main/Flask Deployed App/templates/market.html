@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Nature's Remedies
+{% endblock pagetitle %}
+
+{% block body %}
+
+<style>
+    .falling-leaf {
+        position: fixed;
+        z-index: 999;
+        pointer-events: none;
+        animation: falling 10s linear infinite;
+    }
+
+    @keyframes falling {
+        0% {
+            transform: translateY(-10%) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .farm-bg {
+        background: linear-gradient(135deg, #ffd89b 0%, #ffb366 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.3;
+    }
+
+    .product-card {
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .product-image {
+        transition: transform 0.3s ease;
+        object-fit: cover; /* Ensures images maintain aspect ratio */
+        width: 200px;
+        height: 250px;
+    }
+
+    .product-image:hover {
+        transform: scale(1.05);
+    }
+
+    .buy-btn {
+        transition: all 0.3s ease;
+        background: linear-gradient(145deg, #2e7d32, #1b5e20);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    .buy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .title-animate {
+        animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+        0%, 100% { text-shadow: 0 0 5px rgba(255,165,0,0.5); }
+        50% { text-shadow: 0 0 20px rgba(255,165,0,0.8); }
+    }
+</style>
+
+<div class="farm-bg"></div>
+
+<script>
+    function createLeaf() {
+        const leaf = document.createElement('img');
+        leaf.src = '/static/images/leaf.png'; // Move leaf image to static folder
+        leaf.classList.add('falling-leaf');
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.width = Math.random() * 20 + 20 + 'px';
+        leaf.onerror = function() {
+            this.style.display = 'none'; // Hide if image fails to load
+        };
+        document.body.appendChild(leaf);
+        
+        setTimeout(() => {
+            leaf.remove();
+        }, 10000);
+    }
+
+    setInterval(createLeaf, 2000);
+</script>
+
+<br>
+<div class="row mb-5 text-center">
+    <div class="col-lg-10 mx-auto">
+        <h1 class="display-4 title-animate" style="padding-top: 2%;font-weight: 400;color: #e65100;"><b>🌿 Nature's Remedies 🌿</b></h1>
+        <p class="lead" style="font-weight: 500;color: #33691e;">Your One-Stop Shop for Plant Health Solutions</p>
+    </div>
+</div>
+<div class="row p-3">
+    {% for index in range(0,supplement_name | length) %}
+    {% if index != 4 %}
+    <div class="col">
+        <div class="product-card p-5 shadow rounded-lg" style="height: 95%;">
+        <center>
+            {% if index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or
+            index==23 or index==24 or index==25 or index==28 or index==38 %}
+            <h5>Fertilizer<b style="color: #2e7d32;"> (Healthy):</b></h5>
+            {% else %}
+            <h5>Supplements<b style="color: #c62828;"> (Diseased):</b></h5>
+            {% endif %}
+            <br>
+            <img class="product-image" src="{{supplement_image[index]}}" 
+                 onerror="this.src='/static/images/placeholder.jpg'" 
+                 alt="{{supplement_name[index]}}">
+            <br>
+            <br>
+            <h6 style="color: #33691e;">For {{disease[index]}}</h6>
+            <p style="color: #1b5e20;">{{supplement_name[index]}}</p>
+
+            <a target="_blank" href="{{buy[index]}}"><button type="button" class="btn btn-success buy-btn">
+                <i class="ion-bag"></i> Purchase Now</button></a>
+        </center>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+{% endblock body %}

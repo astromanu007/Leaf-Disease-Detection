@@ -1,0 +1,118 @@
+<html>
+{% extends 'base.html' %}
+{% block pagetitle %}
+🍀Anjaneya🍀
+{% endblock pagetitle %}
+
+{% block body %}
+<div>
+    <div class="container">
+        <!-- For demo purpose -->
+        <div class="row mb-5 text-center text-white">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="display-4" style="padding-top: 2%;font-weight: 400;color: rgb(4, 54, 4);"><b>🍀Anjaneya🍀</b></h1>
+                <p class="lead" style="font-weight: 500;color: black;">Let 🍁Anjaneya🍁 Help You To Detect Disease and Find Your Cure</p>
+            </div>
+        </div>
+        <!-- End -->
+        <div class="row ">
+            <div class="col mx-auto">
+                <div class="p-5 bg-white shadow rounded-lg" style="height: 95%;">
+                    <h5><b>Why is it necessary to detect disease in plant ?</b></h5>
+                    <p>Early detection of plant diseases is crucial for maintaining healthy crops and ensuring food security. 
+                        Plant diseases can severely impact crop yields, leading to significant economic losses for farmers 
+                        and potentially affecting food availability. By identifying diseases early, farmers can take 
+                        appropriate measures before the infection spreads to other plants.
+                    </p>
+                    <p>Modern disease detection methods, especially those using artificial intelligence, can identify 
+                        problems before visible symptoms appear. This proactive approach not only saves time and resources 
+                        but also helps in implementing targeted treatment strategies, reducing the need for widespread 
+                        pesticide use and promoting more sustainable farming practices.
+                    </p>
+                </div>
+            </div>
+            <div class="col mx-auto">
+                <div class="p-5 bg-white shadow rounded-lg" style="height: 95%;">
+                    <div class="d-flex justify-content-center">
+                        
+                        <img src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif"
+                            height="200" alt="Happy Farmer" width="200" class="mx-2 rounded-pill">
+                    </div>
+
+                    <!-- Default bootstrap file upload-->
+
+                    <form action="/submit" method="POST" enctype="multipart/form-data">
+                        <div class="custom-file overflow-hidden mb-4">
+                            <input type="file" id="actual-btn" hidden name="image" accept="image/*" onchange="previewImage(this)"/>
+                            <label for="actual-btn">Choose File</label>
+                            <span id="file-chosen">No file chosen</span>
+                            <div id="image-preview" class="mt-3" style="display: none;">
+                                <img id="preview" src="#" alt="Preview" style="max-width: 200px; max-height: 200px;"/>
+                            </div>
+                        </div>
+                        <script>
+                            function previewImage(input) {
+                                const preview = document.getElementById('preview');
+                                const previewDiv = document.getElementById('image-preview');
+                                const fileChosen = document.getElementById('file-chosen');
+                                
+                                if (input.files && input.files[0]) {
+                                    const reader = new FileReader();
+                                    
+                                    reader.onload = function(e) {
+                                        preview.src = e.target.result;
+                                        previewDiv.style.display = 'block';
+                                        fileChosen.textContent = input.files[0].name;
+                                    }
+                                    
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                        </script>
+
+                        <!-- End -->
+
+                        <h6 class="text-center mb-4 text-muted">
+                            Simply upload your plant's leaf image and then see the magic of AI.
+                        </h6>
+
+                        <!-- Custom bootstrap upload file-->
+                        <center>
+                            <a class="mx-2"><button type="submit" class="btn btn-outline-success">Submit</button></a>
+                        </center>
+                    </form>
+                    <!-- End -->
+
+                </div>
+            </div>
+            <div class="col mx-auto">
+                <div class="p-5 bg-white shadow rounded-lg" style="height: 95%;">
+                    <h5><b>Essential Steps for Plant Disease Prevention:</b></h5>
+                    <ol>
+                        <li>Practice Regular Plant Monitoring and Early Detection</li>
+                        <li>Maintain Proper Watering Schedule - Avoid Overwatering</li>
+                        <li>Use Disease-Resistant Plant Varieties When Possible</li>
+                        <li>Keep Garden Tools Clean and Sanitized</li>
+                        <li>Apply Organic Mulch to Protect Root Systems</li>
+                        <li>Maintain Proper Plant Spacing for Air Flow</li>
+                        <li>Remove and Dispose of Infected Plant Material Promptly</li>
+                    </ol>
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/Leaf_spot" 
+                        class="mx-2"><button type="button" class="btn btn-outline-success">Learn More About Prevention</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const actualBtn = document.getElementById('actual-btn');
+
+    const fileChosen = document.getElementById('file-chosen');
+
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+</script>
+
+{% endblock body %}

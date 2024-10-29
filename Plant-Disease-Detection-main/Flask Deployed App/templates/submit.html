@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+{{title}}
+{% endblock pagetitle %}
+{% block body %}
+
+<style>
+    .falling-leaf {
+        position: fixed;
+        z-index: 999;
+        pointer-events: none;
+        animation: falling 10s linear infinite;
+    }
+
+    @keyframes falling {
+        0% {
+            transform: translateY(-10%) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    .farm-bg {
+        background: linear-gradient(135deg, #ffd89b 0%, #ffb366 100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.3;
+        background-image: 
+            url('data:image/svg+xml;utf8,<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><path d="M25 25l12.5-21.7h-25L25 25z" fill="%23D35400" opacity="0.1"/></svg>'),
+            url('data:image/svg+xml;utf8,<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><circle cx="15" cy="15" r="5" fill="%23E67E22" opacity="0.1"/></svg>');
+        animation: bgScroll 30s linear infinite;
+    }
+
+    @keyframes bgScroll {
+        from { background-position: 0 0, 0 0; }
+        to { background-position: 100px 100px, 50px 50px; }
+    }
+
+    .result-card {
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid #D35400;
+    }
+
+    .result-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: repeating-linear-gradient(
+            45deg,
+            #E67E22,
+            #E67E22 10px,
+            #D35400 10px,
+            #D35400 20px
+        );
+    }
+
+    .result-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(211, 84, 0, 0.15);
+    }
+
+    .title-glow {
+        animation: titleGlow 2s ease-in-out infinite;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        font-family: 'Rajdhani', sans-serif;
+        background: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z" fill="%23D35400" opacity="0.1"/></svg>');
+    }
+
+    @keyframes titleGlow {
+        0%, 100% { text-shadow: 0 0 5px rgba(211, 84, 0, 0.5); }
+        50% { text-shadow: 0 0 20px rgba(211, 84, 0, 0.8); }
+    }
+
+    .buy-btn {
+        transition: all 0.3s ease;
+        background: linear-gradient(145deg, #D35400, #E67E22) !important;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 25px;
+    }
+
+    .buy-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(211, 84, 0, 0.2);
+    }
+
+    /* Added Indian theme decorative elements */
+    .farming-decor {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        background-image: 
+            url('data:image/svg+xml;utf8,<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg"><path d="M20 5c-8 13.8-16 0-16 0s8 13.8 0 27.6c8-13.8 16 0 16 0s8-13.8 16 0c-8-13.8 0-27.6 0-27.6s-8 13.8-16 0z" fill="%23D35400" opacity="0.05"/></svg>'),
+            url('data:image/svg+xml;utf8,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M30 10l5 8.7-5 8.7-5-8.7z" fill="%23E67E22" opacity="0.05"/></svg>');
+        animation: farmingBg 40s linear infinite;
+    }
+
+    @keyframes farmingBg {
+        from { background-position: 0 0; }
+        to { background-position: 100px 100px; }
+    }
+
+    /* Additional Indian heritage styles */
+    .container {
+        background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M50 20c16.6 0 30 13.4 30 30S66.6 80 50 80 20 66.6 20 50s13.4-30 30-30zm0-10c22.1 0 40 17.9 40 40s-17.9 40-40 40-40-17.9-40-40 17.9-40 40-40z" fill="%23D35400" opacity="0.03"/></svg>');
+    }
+
+    h1, h5, h6 {
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+    .badge {
+        border: 2px solid #FFF;
+        background: linear-gradient(45deg, #D35400, #E67E22) !important;
+    }
+</style>
+
+<div class="farm-bg"></div>
+<div class="farming-decor"></div>
+
+<script>
+    function createLeaf() {
+        const leaf = document.createElement('img');
+        leaf.src = '/static/images/leaf.png';
+        leaf.classList.add('falling-leaf');
+        leaf.style.left = Math.random() * 100 + 'vw';
+        leaf.style.width = Math.random() * 20 + 20 + 'px';
+        leaf.style.filter = 'hue-rotate(' + Math.random() * 90 + 'deg) sepia(50%)';
+        document.body.appendChild(leaf);
+        
+        setTimeout(() => {
+            leaf.remove();
+        }, 10000);
+    }
+
+    setInterval(createLeaf, 2000);
+</script>
+
+<div class="container">
+    <div class="row mb-5 text-center">
+        <div class="col-lg-10 mx-auto">
+            <h1 class="display-4 title-glow animate__animated animate__fadeIn" style="padding-top: 2%; font-weight: 400; color: #D35400;">
+                <b>🕉️ {{title}} 🪔</b>
+            </h1>
+            <p class="lead animate__animated animate__fadeIn animate__delay-1s" style="color: #E67E22;">
+                Ancient Wisdom for Modern Gardens
+            </p>
+        </div>
+    </div>
+
+    <center>
+        <div class="col animate__animated animate__fadeIn animate__delay-1s">
+            <div class="result-card p-4 shadow rounded-lg" style="width: 30%;">
+                <img src={{image_url}} width="350" height="350" class="rounded-lg">
+            </div>
+        </div>
+    </center>
+    
+    <br>
+    
+    <div class="row">
+        <div class="col mx-auto">
+            <div class="result-card p-5 shadow rounded-lg animate__animated animate__fadeIn animate__delay-2s" 
+                 style="height: 95%; 
+                        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+                        border-radius: 20px;
+                        border: 2px solid #D35400;
+                        box-shadow: 0 10px 20px rgba(230,126,34,0.1);">
+                <h5 class="text-success mb-4" style="position: relative; display: inline-block;">
+                    <span style="position: absolute; 
+                                top: -15px; 
+                                left: -15px; 
+                                width: 30px; 
+                                height: 30px;
+                                background: #FFF3E0;
+                                border-radius: 50%;
+                                z-index: -1;"></span>
+                    <b class="animate__animated animate__pulse animate__infinite">
+                        {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+                        <span style="background: linear-gradient(45deg, #D35400, #E67E22);
+                                   -webkit-background-clip: text;
+                                   -webkit-text-fill-color: transparent;">
+                            🌺 Ayurvedic Growing Tips:
+                        </span>
+                        {% else %}
+                        <span style="background: linear-gradient(45deg, #D35400, #E67E22);
+                                   -webkit-background-clip: text;
+                                   -webkit-text-fill-color: transparent;">
+                            🔍 Traditional Analysis:
+                        </span>
+                        {% endif %}
+                    </b>
+                </h5>
+                <p style="line-height: 1.8;
+                          font-size: 1.1em;
+                          color: #D35400;
+                          text-align: justify;
+                          padding: 15px;
+                          background: rgba(255,255,255,0.7);
+                          border-radius: 10px;
+                          border-left: 4px solid #E67E22;">
+                    {{desc}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col mx-auto">
+            <div class="result-card p-5 shadow rounded-lg animate__animated animate__fadeIn animate__delay-3s hover-grow" style="height:95%; background: linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(255,255,255,0.8)); border-left: 5px solid #D35400;">
+                <h5 class="text-success mb-4" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.1);"><b>
+                    {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+                    <span class="animate__animated animate__pulse animate__infinite">✨</span> Vedic Benefits:
+                    {% else %}
+                    <span class="animate__animated animate__pulse animate__infinite">🛡️</span> Ancient Prevention Guide:
+                    {% endif %}
+                </b></h5>
+                <p style="line-height: 1.8; font-size: 1.1em; color: #D35400; text-align: justify; padding: 10px;">{{prevent}}</p>
+            </div>
+        </div>
+
+        {% if pred!=4 %}
+        <div class="col mx-auto">
+            <div class="result-card p-5 shadow rounded-lg animate__animated animate__fadeIn animate__delay-4s hover-grow" style="height: 95%; background: linear-gradient(to bottom right, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); border: 2px solid #D35400; transform-style: preserve-3d;">
+                <center>
+                    <h5 class="mb-4">
+                        <span class="badge" style="background: linear-gradient(45deg, #D35400, #E67E22); padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or pred==24 or pred==25 or pred==28 or pred==38 %}
+                            <span class="animate__animated animate__bounce animate__infinite">🌿</span> Traditional Fertilizer
+                            {% else %}
+                            <span class="animate__animated animate__bounce animate__infinite">💪</span> Ayurvedic Supplements
+                            {% endif %}
+                        </span>
+                    </h5>
+                    
+                    <div class="image-container position-relative" style="margin: 20px 0;">
+                        <img src={{simage}} class="rounded-lg shadow-lg hover-grow" style="width: 300px; height: 350px; object-fit: cover; border: 3px solid #D35400; transition: all 0.3s ease;">
+                        <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(211,84,0,0.1); border-radius: 8px;">
+                        </div>
+                    </div>
+
+                    <h6 class="product-name" style="color: #D35400; font-size: 1.2em; font-weight: 600; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); margin: 15px 0;">
+                        {{sname}}
+                    </h6>
+
+                    <a target="_blank" href={{buy_link}} class="text-decoration-none">
+                        <button type="button" class="btn btn-success buy-btn animate__animated animate__pulse animate__infinite" style="background: linear-gradient(45deg, #D35400, #E67E22); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease;">
+                            <i class="ion-bag"></i> Purchase Now
+                        </button>
+                    </a>
+                </center>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock body %}
