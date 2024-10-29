@@ -29,7 +29,7 @@
    ```
 
 4. Download Pre-trained Model
-   - Get `plant_disease_model_1.pt` from [this link](https://drive.google.com/drive/folders/1ewJWAiduGuld_9oGSrTuLumg9y62qS6A?usp=share_link)
+   - Get `plant_disease_model_1.pt` from [this link](https://drive.google.com/file/d/1JsUW38lrsyAYG0ORjqwQxQiRZpPIoc0c/view?usp=sharing)
    - Place it in the `Flask Deployed App` directory
 
 5. Run the Application
