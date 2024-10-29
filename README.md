@@ -104,65 +104,85 @@ Let’s start building:
 - 📄 **Database**: MongoDB
 - 🤖 **Others**: Cloudinary (for image hosting), Axios (for API calls)
 
-## 🚪 Setup Instructions
+#  🌿 Anjaneya Plant Disease Detection & Cure
 
-### 🚀 Requirements
-- 🧪 Node.js (v14 or above)
-- 📅 NPM (v6 or above)
-- 🛋️ MongoDB
-- 🤖 TensorFlow.js
+* Welcome to our innovative Plant Disease Detection system, a vital tool for modern agriculture. We've developed an advanced solution using Deep Learning technology that enables farmers to identify plant diseases quickly and accurately. Our system leverages Convolutional Neural Networks built with PyTorch to classify plant leaf images into 39 distinct disease categories. The model was trained on the comprehensive Plant Village dataset, which you can find linked in our Blog section.
 
-### 📜 Step-by-step Guide:
+## 🚀 Getting Started
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/astromanu007/Leaf-Disease-Detection.git
-    cd leaf-disease-prediction
-    ```
+### Prerequisites
+1. Make sure you have **Python 3.8** installed on your system
+   - You can download it from [Python's official website](https://www.python.org/downloads/)
+   - Verify installation by running `python --version` in terminal
 
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+### Installation Steps
+1. Clone this repository
+   ```
+   git clone https://github.com/astromanu007/Leaf-Disease-Detection.git
+   cd Leaf-Disease-Detection
+   ```
 
-3. **Set up environment variables**:
-    Create a `.env` file in the root directory with the following variables:
-    ```
-    MONGO_URI=your_mongodb_connection_string
-    CLOUDINARY_URL=your_cloudinary_url
-    ```
+2. Set up Python Virtual Environment
+   ```
+   python -m venv venv
+   ```
+   - For Windows: `venv\Scripts\activate`
+   - For Linux/Mac: `source venv/bin/activate`
 
-4. **Run the development server**:
-    ```bash
-    npm start
-    ```
+3. Install Required Dependencies
+   ```
+   pip install -r requirements.txt
+   ```
 
-5. **Run the backend server**:
-    In a separate terminal, navigate to the `backend` directory and start the backend:
-    ```bash
-    cd backend
-    npm install
-    npm run server
-    ```
+4. Download Pre-trained Model
+   - Get `plant_disease_model_1.pt` from [this link](https://drive.google.com/drive/folders/1ewJWAiduGuld_9oGSrTuLumg9y62qS6A?usp=share_link)
+   - Place it in the `Flask Deployed App` directory
 
-6. **Access the app**: Open your browser and go to `http://localhost:3000`
+5. Run the Application
+   ```
+   cd Flask\ Deployed\ App
+   python app.py
+   ```
 
-## 🎯 How to Use
+6. Access the Application
+   - Open your web browser
+   - Go to `http://localhost:5000`
+   - You're ready to start detecting plant diseases!
 
-1. **Upload a Leaf Image**: 🖼️ Take a clear photo of the leaf and upload it using the "Upload Image" button.
-2. **View Predictions**: 🤖 The app will display the detected disease along with confidence levels.
-3. **Get Cure Suggestions**: 🧪 Based on the prediction, the app will suggest potential treatments or remedies.
-4. **Save History**: 📂 You can view and manage previous predictions through the app's history feature.
+### Optional: Explore in Jupyter Notebook
+- Navigate to the `Model` directory
+- Launch Jupyter Notebook to explore the model implementation
 
-## 🤝 Contributing
+## 🤝 Join Our Community
+* We welcome contributions from the developer community!
+* Help us enhance the UI, improve the Deep Learning model, or add informative documentation
+* When modifying the Deep Learning components, please update related documentation (.md, .pdf, .ipynb)
+* Ensure your code is error-free and thoroughly tested
+* Follow the standard fork and pull request workflow
+* Learn about creating pull requests: https://opensource.com/article/19/7/create-pull-request-github
 
-We welcome contributions from the open-source community! Feel free to submit issues and pull requests.
+## 🔍 Test Image Library
+* Access our curated test images in the test_images folder
+* Each image is labeled with its corresponding disease for easy verification
+* Perfect for validating the model's accuracy
 
-### 📑 How to Contribute:
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Submit a pull request.
+## 📚 Learn More
+<a href="https://medium.com/analytics-vidhya/plant-disease-detection-using-convolutional-neural-networks-and-pytorch-87c00c54c88f" target = "_blank">Discover Our CNN Implementation with PyTorch</a><br>
+
+## 🌐 Live Demo
+<a href="https://plant-disease-detection-ai.herokuapp.com/" target = "_blank">Try Our AI-Powered Detection Tool</a><br>
+
+## 📸 Application Preview:
+#### Homepage
+<img src = "demo_images/1.PNG" > <br>
+#### Image Upload Interface
+<img src = "demo_images/2.PNG"> <br>
+#### Analysis Results
+<img src = "demo_images/3.PNG"> <br>
+#### Connect With Us
+<img src = "demo_images/4.PNG"> <br>
+
+### Created by Manish Dhatrak 🌱 
 
 ## 📜 License
 
