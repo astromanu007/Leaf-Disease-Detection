@@ -68,12 +68,12 @@
 
 ## 📸 Application Preview:
 #### Homepage
-<img src = "demo_images/1.PNG" > <br>
+<img src="https://github.com/astromanu007/Leaf-Disease-Detection/blob/main/demo_images/1.png"> <br>
 #### Image Upload Interface
-<img src = "demo_images/2.PNG"> <br>
+<img src = "https://github.com/astromanu007/Leaf-Disease-Detection/blob/main/demo_images/2.png"> <br>
 #### Analysis Results
-<img src = "demo_images/3.PNG"> <br>
+<img src = "https://github.com/astromanu007/Leaf-Disease-Detection/blob/main/demo_images/3.png"> <br>
 #### Connect With Us
-<img src = "demo_images/4.PNG"> <br>
+<img src = "https://github.com/astromanu007/Leaf-Disease-Detection/blob/main/demo_images/4.png"> <br>
 
 ### Created by Manish Dhatrak 🌱 
