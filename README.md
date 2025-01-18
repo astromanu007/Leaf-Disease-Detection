@@ -53,8 +53,7 @@
 * When modifying the Deep Learning components, please update related documentation (.md, .pdf, .ipynb)
 * Ensure your code is error-free and thoroughly tested
 * Follow the standard fork and pull request workflow
-* Learn about creating pull requests: https://opensource.com/article/19/7/create-pull-request-github
-
+* Learn about creating pull requests: https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/
 ## 🔍 Test Image Library
 * Access our curated test images in the test_images folder
 * Each image is labeled with its corresponding disease for easy verification
