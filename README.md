@@ -59,8 +59,6 @@
 * Each image is labeled with its corresponding disease for easy verification
 * Perfect for validating the model's accuracy
 
-## 🌐 Live Demo
-<a href="https://plant-disease-detection-ai.herokuapp.com/" target = "_blank">Try Our AI-Powered Detection Tool</a><br>
 
 ## 📸 Application Preview:
 #### Homepage
