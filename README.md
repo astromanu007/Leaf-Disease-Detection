@@ -60,9 +60,6 @@
 * Each image is labeled with its corresponding disease for easy verification
 * Perfect for validating the model's accuracy
 
-## 📚 Learn More
-<a href="https://medium.com/analytics-vidhya/plant-disease-detection-using-convolutional-neural-networks-and-pytorch-87c00c54c88f" target = "_blank">Discover Our CNN Implementation with PyTorch</a><br>
-
 ## 🌐 Live Demo
 <a href="https://plant-disease-detection-ai.herokuapp.com/" target = "_blank">Try Our AI-Powered Detection Tool</a><br>
 
